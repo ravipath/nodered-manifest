@@ -1,0 +1,25 @@
+metadata:
+  id: 35cf5a6e-5ddb-4eeb-9154-910e18b6c48a
+spec:
+  app: nodered-app
+  selector:
+    matchByDeviceID: 5c057e16-c965-4289-89ab-9b1ffe96e056
+  template:
+    spec:
+      containers:
+      - image: nodered/node-red:3.0.1
+        name: nodered-sonic
+        securityContext:
+          capabilities: {}
+          privileged: true
+        volumeMounts:
+        - mountPath: /data/node-red-data
+          name: node-red_dir
+      network: host
+      restartPolicy:
+        type: Never
+      volumes:
+      - hostPath:
+          path: /data/node-red-data
+        name: node-red_dir
+status: {}
